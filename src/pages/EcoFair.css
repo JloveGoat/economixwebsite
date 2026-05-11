@@ -1,0 +1,48 @@
+.ecofair-page {}
+
+.ecofair-header {
+  padding-top: 130px;
+  padding-bottom: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ecofair-header__bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 70% at 50% -20%, rgba(82, 183, 136, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.ecofair-header__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 680px;
+}
+
+.ecofair-header__inner h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  line-height: 1.1;
+}
+
+.ecofair-header__inner p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+}
+
+.ecofair-content {
+  padding-top: 40px;
+  padding-bottom: 96px;
+}
+
+.ecofair-placeholder {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
