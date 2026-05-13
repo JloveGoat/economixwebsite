@@ -2,13 +2,14 @@
   background: var(--color-primary-dark);
   color: rgba(255, 255, 255, 0.85);
   margin-top: auto;
+  padding-top: 50px;
 }
 
 .footer__inner {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 64px;
-  padding: 72px 24px 56px;
+  padding: 0 24px 64px;
 }
 
 /* Brand column */
@@ -21,15 +22,15 @@
 .footer__logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-sans);
-  font-size: 1.2rem;
-  color: #fff;
   text-decoration: none;
 }
 
-.footer__logo strong {
-  font-weight: 800;
+.footer__logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  /* keep legible on dark bg — invert if logo is dark */
 }
 
 .footer__tagline {
@@ -70,7 +71,7 @@
 /* Links grid */
 .footer__links-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 

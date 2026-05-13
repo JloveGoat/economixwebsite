@@ -41,76 +41,239 @@ const Camps: React.FC = () => {
 /* ─────────────────────────────────────────
    2025 Content — 6 sessions
 ───────────────────────────────────────── */
-const sessions2025 = [
+type Session = {
+  number: string
+  title: string
+  date: string
+  desc: string
+  images: string[]
+  pitchImages?: string[]
+}
+
+const sessions2025: Session[] = [
   {
     number: '01',
-    title: '[Session Title]',
-    date: '[Date, 2025]',
-    desc: '[Describe what happened in this session — topics covered, activities, guest speakers, key takeaways. Edit this placeholder text.]',
-    images: ['session-1a.jpg', 'session-1b.jpg'],
+    title: 'Introduction + Brainstorming',
+    date: 'June 24th, 2025',
+    desc: 'Welcoming over 65 students, we went through various brainstorming activities, like the mini-pitch challenge, where students competed for over $250 in prizes. We also welcomed Mr. Ben Mjolsness, who shared his insights on various sustainability ventures taking place in the Naperville community.',
+    images: [
+      '/images/session-pics/session-1a.JPG',
+      '/images/session-pics/session-1b.JPG',
+      '/images/session-pics/session-1c.JPG',
+    ],
   },
   {
     number: '02',
-    title: '[Session Title]',
-    date: '[Date, 2025]',
-    desc: '[Describe what happened in this session — topics covered, activities, guest speakers, key takeaways. Edit this placeholder text.]',
-    images: ['session-2a.jpg', 'session-2b.jpg'],
+    title: 'The Building Blocks of a Startup',
+    date: 'July 1st, 2025',
+    desc: 'We welcomed over 50 students, who learned about market segmentation and target market analysis. After a guest speech by Mr. Sumit Chugh, who talked about the importance of cost benefit analysis in startups, our 24 startups competed in a 75 second pressure pitch challenge for over $300 in prizes, where they had to pitch their chosen problem to our judges.',
+    images: [
+      '/images/session-pics/session-2a.JPG',
+      '/images/session-pics/session-2b.JPG',
+    ],
+    pitchImages: [
+      '/images/session-pics/session-2c.JPG',
+      '/images/session-pics/session-2d.JPG',
+      '/images/session-pics/session-2e.JPG',
+      '/images/session-pics/session-2f.JPG',
+      '/images/session-pics/session-2g.JPG',
+    ],
   },
   {
     number: '03',
-    title: '[Session Title]',
-    date: '[Date, 2025]',
-    desc: '[Describe what happened in this session — topics covered, activities, guest speakers, key takeaways. Edit this placeholder text.]',
-    images: ['session-3a.jpg', 'session-3b.jpg'],
+    title: 'Prototyping 101',
+    date: 'July 8th 2025',
+    desc: 'With over 65 students, we went through a crash course in accurate prototyping using various methods. After a guest speech by Il. Rep. Theresa Mah and Janet Yang Rohr, our first actiivty of the day was a blitz build challenge where each startup had to construc the tallest tower possible. To conclude the day, all the teams started their prototypes using their allocated budget, ensuring the most efficient use of materials.',
+    images: [
+      '/images/session-pics/session-3a.JPG',
+      '/images/session-pics/session-3b.JPG',
+      '/images/session-pics/session-3c.JPG',
+      '/images/session-pics/session-3d.JPG',
+      '/images/session-pics/session-3e.JPG',
+    ],
   },
   {
     number: '04',
-    title: '[Session Title]',
-    date: '[Date, 2025]',
-    desc: '[Describe what happened in this session — topics covered, activities, guest speakers, key takeaways. Edit this placeholder text.]',
-    images: ['session-4a.jpg', 'session-4b.jpg'],
+    title: 'Crash Course in Marketing',
+    date: 'July 14th, 2025',
+    desc: 'After welcoming over 45 students, we went through a quick crash course in marketing by analyzing big brands like Nike and Apple. After a guest speech from Ms. Archana Sharma, covering how she used marketing to power her own business, all the startups took part in a flyer showdown contest for a chance to win over $150 in prizes! We ended the session with some team work time on their pitches',
+    images: [
+      '/images/session-pics/session-4a.JPG',
+      '/images/session-pics/session-4b.JPG',
+      '/images/session-pics/session-4c.JPG',
+      '/images/session-pics/session-4d.JPG',
+    ],
   },
   {
     number: '05',
-    title: '[Session Title]',
-    date: '[Date, 2025]',
-    desc: '[Describe what happened in this session — topics covered, activities, guest speakers, key takeaways. Edit this placeholder text.]',
-    images: ['session-5a.jpg', 'session-5b.jpg'],
+    title: 'The Key to a Successful Pitch',
+    date: 'July 22nd, 2025',
+    desc: 'With over 50 students, we went through a comprehensive guide to public speaking, with everyone taking part in really fun public speaking drills. After analyzing 2 successful pitches, we went through a round of "Pitch or Ditch!" where each startup had to convince the others that they needed some randomly assigned product for over $200 in prizes! We ended off with some more work time.',
+    images: [
+      '/images/session-pics/session-5a.JPG',
+      '/images/session-pics/session-5b.JPG',
+      '/images/session-pics/session-5c.JPG',
+      '/images/session-pics/session-5d.JPG',
+      '/images/session-pics/session-5e.JPG',
+      '/images/session-pics/session-5f.JPG',
+    ],
   },
   {
     number: '06',
-    title: '[Session Title]',
-    date: '[Date, 2025]',
-    desc: '[Describe what happened in this session — topics covered, activities, guest speakers, key takeaways. Edit this placeholder text.]',
-    images: ['session-6a.jpg', 'session-6b.jpg'],
+    title: 'Pitch Practice Day',
+    date: 'July 29th, 2025',
+    desc: 'All our 20+ incubated startup teams went through a full day of pitch practice, with everyone revising their pitch and trifold, gearing up for a chance to win out of the $600 cash prize pool at the EcoPreneurship Business Fair! All the teams got specialized help from our mentors, ensuring that they were all ready to pitch at the fair.',
+    images: [
+      '/images/session-pics/session-6a.JPG',
+      '/images/session-pics/session-6b.JPG',
+      '/images/session-pics/session-6c.JPG',
+      '/images/session-pics/session-6d.JPG',
+      '/images/session-pics/session-6e.JPG',
+      '/images/session-pics/session-6f.JPG',
+      '/images/session-pics/session-6g.JPG',
+    ],
   },
 ]
 
 const Camp2025: React.FC = () => (
   <div className="camp-year">
-    {sessions2025.map((s, i) => (
-      <div className={`session-block${i % 2 === 1 ? ' session-block--flipped' : ''}`} key={s.number}>
-        {/* Text side */}
-        <div className="session-block__text">
-          <div className="session-block__number">{s.number}</div>
-          <h2 className="session-block__title">{s.title}</h2>
-          <span className="session-block__date">{s.date}</span>
-          <p className="session-block__desc">{s.desc}</p>
-        </div>
+    {sessions2025.map((s, i) => {
+      const isReal = s.images[0].startsWith('/')
+      const count = s.images.length
 
-        {/* Images side */}
-        <div className="session-block__images">
-          <div className="session-img session-img--main img-placeholder">
-            <PlaceholderIcon />
-            <span>{s.images[0]}</span>
+      return (
+        <div className="session-wrapper" key={s.number}>
+          <div className={`session-block${i % 2 === 1 ? ' session-block--flipped' : ''}${count === 7 ? ' session-block--top-align' : ''}`}>
+            {/* Text side */}
+            <div className="session-block__text">
+              <div className="session-block__number">{s.number}</div>
+              <h2 className="session-block__title">{s.title}</h2>
+              <span className="session-block__date">{s.date}</span>
+              <p className="session-block__desc">{s.desc}</p>
+            </div>
+
+            {/* Images side */}
+            {isReal && count === 7 ? (
+              <div className="session-block__images session-block__images--seven">
+                {/* 6a — hero */}
+                <div className="session-img seven-hero">
+                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                </div>
+                {/* 6b–6g — 3×2 collage */}
+                <div className="seven-collage">
+                  {s.images.slice(1).map((src, idx) => (
+                    <div key={idx} className="session-img seven-collage__cell">
+                      <img src={src} alt={`${s.title} photo ${idx + 2}`} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : isReal && count === 6 ? (
+              <div className="session-block__images session-block__images--six">
+                <div className="session-img six-a">
+                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                </div>
+                <div className="session-img six-b">
+                  <img src={s.images[1]} alt={`${s.title} photo 2`} />
+                </div>
+                <div className="session-img six-c">
+                  <img src={s.images[2]} alt={`${s.title} photo 3`} />
+                </div>
+                <div className="session-img six-d">
+                  <img src={s.images[3]} alt={`${s.title} photo 4`} />
+                </div>
+                <div className="session-img six-e">
+                  <img src={s.images[4]} alt={`${s.title} photo 5`} />
+                </div>
+                <div className="session-img six-f">
+                  <img src={s.images[5]} alt={`${s.title} photo 6`} />
+                </div>
+              </div>
+            ) : isReal && count === 4 ? (
+              <div className="session-block__images session-block__images--four">
+                {s.images.map((src, idx) => (
+                  <div key={idx} className="session-img four-cell">
+                    <img src={src} alt={`${s.title} photo ${idx + 1}`} />
+                  </div>
+                ))}
+              </div>
+            ) : isReal && count === 5 ? (
+              <div className="session-block__images session-block__images--five">
+                {/* Row 1: 3a + 3b */}
+                <div className="session-img five-r1a">
+                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                </div>
+                <div className="session-img five-r1b">
+                  <img src={s.images[1]} alt={`${s.title} photo 2`} />
+                </div>
+                {/* Row 2: 3c + 3d side by side (state reps) */}
+                <div className="session-img five-r2a">
+                  <img src={s.images[2]} alt={`${s.title} photo 3`} />
+                </div>
+                <div className="session-img five-r2b">
+                  <img src={s.images[3]} alt={`${s.title} photo 4`} />
+                </div>
+                {/* Row 3: 3e full width */}
+                <div className="session-img five-r3">
+                  <img src={s.images[4]} alt={`${s.title} photo 5`} />
+                </div>
+              </div>
+            ) : isReal && count >= 3 ? (
+              <div className="session-block__images session-block__images--trio">
+                <div className="session-img session-img--trio-main">
+                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                </div>
+                <div className="session-img-row">
+                  <div className="session-img session-img--trio-sub">
+                    <img src={s.images[1]} alt={`${s.title} photo 2`} />
+                  </div>
+                  <div className="session-img session-img--trio-sub">
+                    <img src={s.images[2]} alt={`${s.title} photo 3`} />
+                  </div>
+                </div>
+              </div>
+            ) : isReal ? (
+              <div className="session-block__images session-block__images--pair">
+                <div className="session-img session-img--pair-a">
+                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                </div>
+                <div className="session-img session-img--pair-b">
+                  <img src={s.images[1]} alt={`${s.title} photo 2`} />
+                </div>
+              </div>
+            ) : (
+              <div className="session-block__images">
+                <div className="session-img session-img--main img-placeholder">
+                  <PlaceholderIcon />
+                  <span>{s.images[0]}</span>
+                </div>
+                <div className="session-img session-img--secondary img-placeholder">
+                  <PlaceholderIcon />
+                  <span>{s.images[1]}</span>
+                </div>
+              </div>
+            )}
           </div>
-          <div className="session-img session-img--secondary img-placeholder">
-            <PlaceholderIcon />
-            <span>{s.images[1]}</span>
-          </div>
+
+          {/* Pitch collage — shown when pitchImages are provided */}
+          {s.pitchImages && s.pitchImages.length > 0 && (
+            <div className="pitch-collage">
+              <p className="pitch-collage__label">Students pitching their startups</p>
+              <div className="pitch-collage__grid">
+                {s.pitchImages.map((src, idx) => (
+                  <div
+                    key={idx}
+                    className={`pitch-collage__item pitch-collage__item--${idx}`}
+                  >
+                    <img src={src} alt={`Pitch photo ${idx + 1}`} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-    ))}
+      )
+    })}
   </div>
 )
 

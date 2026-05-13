@@ -7,15 +7,10 @@ const Footer: React.FC = () => {
       <div className="container footer__inner">
         <div className="footer__brand">
           <Link to="/" className="footer__logo">
-            <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
-              <circle cx="32" cy="32" r="32" fill="#52b788" />
-              <path d="M18 46 C18 29 32 18 46 18 C46 35 32 46 18 46Z" fill="#d8f3dc" />
-              <path d="M32 46 L32 26" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
-            </svg>
-            <span>Eco<strong>Nomix</strong></span>
+            <img src="/images/economix-logo.png" alt="EcoNomix logo" className="footer__logo-img" />
           </Link>
           <p className="footer__tagline">
-            Where ambitious founders build sustainable, impactful ventures.
+            Where Social Innovation Meets Environmental Sustainability.
           </p>
           <div className="footer__socials">
             <a href="#" aria-label="Twitter / X" className="footer__social-link">
@@ -37,22 +32,13 @@ const Footer: React.FC = () => {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/camps">Camps</Link></li>
-            </ul>
-          </div>
-          <div className="footer__col">
-            <h4>Programs</h4>
-            <ul>
-              <li><Link to="/camps">Startup Camp</Link></li>
-              <li><Link to="/camps">Accelerator</Link></li>
-              <li><Link to="/camps">Mentorship</Link></li>
+              <li><Link to="/ecofair">EcoPreneurship Fair</Link></li>
             </ul>
           </div>
           <div className="footer__col">
             <h4>Contact</h4>
             <ul>
-              <li><a href="mailto:hello@economix.vc">hello@economix.vc</a></li>
-              <li><a href="#">Apply Now</a></li>
-              <li><a href="#">Partner With Us</a></li>
+              <li><a href="mailto:economixnfp@gmail.com">economixnfp@gmail.com</a></li>
             </ul>
           </div>
         </div>
