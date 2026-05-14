@@ -1,4 +1,5 @@
 import './EcoFair.css'
+import imgUrl from '../imgUrl'
 
 const PlaceholderImg: React.FC<{ label?: string }> = ({ label }) => (
   <div className="ef-placeholder-img">
@@ -60,7 +61,7 @@ const EcoFair: React.FC = () => {
         {/* ── Group photo ── */}
         <div className="ecofair-hero-img">
           <img
-            src="/images/session-pics/final-group-pic.JPG"
+            src={imgUrl('/images/session-pics/final-group-pic.JPG')}
             alt="EcoPreneurship Business Fair 2025 — group photo"
           />
         </div>
@@ -90,19 +91,19 @@ const EcoFair: React.FC = () => {
               place={2}
               startup="[Startup Name]"
               desc="[Brief description of this team's project and what made it stand out at the fair.]"
-              imageSrc="/images/session-pics/second-place.JPG"
+              imageSrc={imgUrl('/images/session-pics/second-place.JPG')}
             />
             <PodiumCard
               place={1}
               startup="[Startup Name]"
               desc="[Brief description of this team's project and what made it stand out at the fair.]"
-              imageSrc="/images/session-pics/first-place.JPG"
+              imageSrc={imgUrl('/images/session-pics/first-place.JPG')}
             />
             <PodiumCard
               place={3}
               startup="[Startup Name]"
               desc="[Brief description of this team's project and what made it stand out at the fair.]"
-              imageSrc="/images/session-pics/third-place.JPG"
+              imageSrc={imgUrl('/images/session-pics/third-place.JPG')}
             />
           </div>
         </section>
@@ -114,7 +115,7 @@ const EcoFair: React.FC = () => {
             {Array.from({ length: 20 }, (_, i) => i + 1).map(n => (
               <div key={n} className={`ef-gallery__cell ef-gallery__cell--${n}`}>
                 <img
-                  src={`/images/session-pics/pitchpic${n}.JPG`}
+                  src={imgUrl(`/images/session-pics/pitchpic${n}.JPG`)}
                   alt={`Fair photo ${n}`}
                 />
               </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './Camps.css'
+import imgUrl from '../imgUrl'
 
 type Year = '2025' | '2026'
 
@@ -157,13 +158,13 @@ const Camp2025: React.FC = () => (
               <div className="session-block__images session-block__images--seven">
                 {/* 6a — hero */}
                 <div className="session-img seven-hero">
-                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
                 </div>
                 {/* 6b–6g — 3×2 collage */}
                 <div className="seven-collage">
                   {s.images.slice(1).map((src, idx) => (
                     <div key={idx} className="session-img seven-collage__cell">
-                      <img src={src} alt={`${s.title} photo ${idx + 2}`} />
+                      <img src={imgUrl(src)} alt={`${s.title} photo ${idx + 2}`} />
                     </div>
                   ))}
                 </div>
@@ -171,29 +172,29 @@ const Camp2025: React.FC = () => (
             ) : isReal && count === 6 ? (
               <div className="session-block__images session-block__images--six">
                 <div className="session-img six-a">
-                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
                 </div>
                 <div className="session-img six-b">
-                  <img src={s.images[1]} alt={`${s.title} photo 2`} />
+                  <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`} />
                 </div>
                 <div className="session-img six-c">
-                  <img src={s.images[2]} alt={`${s.title} photo 3`} />
+                  <img src={imgUrl(s.images[2])} alt={`${s.title} photo 3`} />
                 </div>
                 <div className="session-img six-d">
-                  <img src={s.images[3]} alt={`${s.title} photo 4`} />
+                  <img src={imgUrl(s.images[3])} alt={`${s.title} photo 4`} />
                 </div>
                 <div className="session-img six-e">
-                  <img src={s.images[4]} alt={`${s.title} photo 5`} />
+                  <img src={imgUrl(s.images[4])} alt={`${s.title} photo 5`} />
                 </div>
                 <div className="session-img six-f">
-                  <img src={s.images[5]} alt={`${s.title} photo 6`} />
+                  <img src={imgUrl(s.images[5])} alt={`${s.title} photo 6`} />
                 </div>
               </div>
             ) : isReal && count === 4 ? (
               <div className="session-block__images session-block__images--four">
                 {s.images.map((src, idx) => (
                   <div key={idx} className="session-img four-cell">
-                    <img src={src} alt={`${s.title} photo ${idx + 1}`} />
+                    <img src={imgUrl(src)} alt={`${s.title} photo ${idx + 1}`} />
                   </div>
                 ))}
               </div>
@@ -201,44 +202,44 @@ const Camp2025: React.FC = () => (
               <div className="session-block__images session-block__images--five">
                 {/* Row 1: 3a + 3b */}
                 <div className="session-img five-r1a">
-                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
                 </div>
                 <div className="session-img five-r1b">
-                  <img src={s.images[1]} alt={`${s.title} photo 2`} />
+                  <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`} />
                 </div>
                 {/* Row 2: 3c + 3d side by side (state reps) */}
                 <div className="session-img five-r2a">
-                  <img src={s.images[2]} alt={`${s.title} photo 3`} />
+                  <img src={imgUrl(s.images[2])} alt={`${s.title} photo 3`} />
                 </div>
                 <div className="session-img five-r2b">
-                  <img src={s.images[3]} alt={`${s.title} photo 4`} />
+                  <img src={imgUrl(s.images[3])} alt={`${s.title} photo 4`} />
                 </div>
                 {/* Row 3: 3e full width */}
                 <div className="session-img five-r3">
-                  <img src={s.images[4]} alt={`${s.title} photo 5`} />
+                  <img src={imgUrl(s.images[4])} alt={`${s.title} photo 5`} />
                 </div>
               </div>
             ) : isReal && count >= 3 ? (
               <div className="session-block__images session-block__images--trio">
                 <div className="session-img session-img--trio-main">
-                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
                 </div>
                 <div className="session-img-row">
                   <div className="session-img session-img--trio-sub">
-                    <img src={s.images[1]} alt={`${s.title} photo 2`} />
+                    <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`} />
                   </div>
                   <div className="session-img session-img--trio-sub">
-                    <img src={s.images[2]} alt={`${s.title} photo 3`} />
+                    <img src={imgUrl(s.images[2])} alt={`${s.title} photo 3`} />
                   </div>
                 </div>
               </div>
             ) : isReal ? (
               <div className="session-block__images session-block__images--pair">
                 <div className="session-img session-img--pair-a">
-                  <img src={s.images[0]} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
                 </div>
                 <div className="session-img session-img--pair-b">
-                  <img src={s.images[1]} alt={`${s.title} photo 2`} />
+                  <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`} />
                 </div>
               </div>
             ) : (
@@ -265,7 +266,7 @@ const Camp2025: React.FC = () => (
                     key={idx}
                     className={`pitch-collage__item pitch-collage__item--${idx}`}
                   >
-                    <img src={src} alt={`Pitch photo ${idx + 1}`} />
+                    <img src={imgUrl(src)} alt={`Pitch photo ${idx + 1}`} />
                   </div>
                 ))}
               </div>

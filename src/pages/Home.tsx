@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import './Home.css'
 import FlipSlideshow from '../components/FlipSlideshow'
 import SchoolMarquee from '../components/SchoolMarquee'
+import imgUrl from '../imgUrl'
 
 const Home: React.FC = () => {
   return (
@@ -77,7 +78,7 @@ const Home: React.FC = () => {
           <div className="sponsors__tier sponsors__tier--primary">
             {primarySponsors.map(s => (
               <div className="sponsor-logo sponsor-logo--primary" key={s.file}>
-                <img src={`/images/sponsor-pics/${s.file}`} alt={s.name} />
+                <img src={imgUrl(`/images/sponsor-pics/${s.file}`)} alt={s.name} />
               </div>
             ))}
           </div>
@@ -86,7 +87,7 @@ const Home: React.FC = () => {
           <div className="sponsors__tier sponsors__tier--secondary">
             {secondarySponsors.map(s => (
               <div className="sponsor-logo sponsor-logo--secondary" key={s.file}>
-                <img src={`/images/sponsor-pics/${s.file}`} alt={s.name} />
+                <img src={imgUrl(`/images/sponsor-pics/${s.file}`)} alt={s.name} />
               </div>
             ))}
           </div>

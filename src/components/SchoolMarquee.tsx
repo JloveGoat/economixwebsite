@@ -1,4 +1,5 @@
 import './SchoolMarquee.css'
+import imgUrl from '../imgUrl'
 
 const schools = [
   { name: 'Central',         file: 'central.png' },
@@ -42,7 +43,7 @@ const MarqueeRow: React.FC<MarqueeRowProps> = ({ delay }) => (
       {[...schools, ...schools].map((s, i) => (
         <div className="marquee__item" key={`${s.file}-${i}`}>
           <img
-            src={`/images/school-pics/${s.file}`}
+            src={imgUrl(`/images/school-pics/${s.file}`)}
             alt={s.name}
             draggable={false}
           />

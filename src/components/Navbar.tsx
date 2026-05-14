@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import './Navbar.css'
+import imgUrl from '../imgUrl'
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -22,7 +23,7 @@ const Navbar: React.FC = () => {
       <div className="container navbar__inner">
         {/* Logo */}
         <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          <img src="/images/economix-logo.png" alt="EcoNomix logo" className="navbar__logo-img" />
+          <img src={imgUrl('/images/economix-logo.png')} alt="EcoNomix logo" className="navbar__logo-img" />
           <span className="navbar__logo-text">Eco<strong>Nomix</strong></span>
         </Link>
 

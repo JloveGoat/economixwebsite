@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import './FlipSlideshow.css'
+import imgUrl from '../imgUrl'
 
 const images = [
-  '/images/group-pics/session-one-pic.JPG',
-  '/images/group-pics/session-3-pic.JPG',
-  '/images/group-pics/session-5-pic.JPG',
-  '/images/group-pics/final-session-pic.JPG',
+  imgUrl('/images/group-pics/session-one-pic.JPG'),
+  imgUrl('/images/group-pics/session-3-pic.JPG'),
+  imgUrl('/images/group-pics/session-5-pic.JPG'),
+  imgUrl('/images/group-pics/final-session-pic.JPG'),
 ]
 
 const HOLD_MS  = 7000  // how long each image stays visible
