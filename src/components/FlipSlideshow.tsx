@@ -9,8 +9,7 @@ const images = [
   imgUrl('/images/group-pics/final-session-pic.JPG'),
 ]
 
-const HOLD_MS  = 7000  // how long each image stays visible
-const FLIP_MS  = 900   // must match CSS animation duration
+const HOLD_MS = 7000  // how long each image stays visible
 
 const FlipSlideshow: React.FC = () => {
   const [current,   setCurrent]   = useState(0)
