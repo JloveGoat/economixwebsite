@@ -1,136 +1,385 @@
-/* ===== Page Hero (shared) ===== */
-.page-hero {
-  padding-top: 120px;
-  padding-bottom: 80px;
+/* ═══════════════════════════════════════════
+   STICKY PHOTO STAGE
+═══════════════════════════════════════════ */
+
+/*
+  The trick: .about-bg is position:sticky with height:100vh
+  but negative margin-bottom:-100vh pulls all subsequent
+  content inside .about-stage up to overlap it.
+  Once .about-stage is fully scrolled past, the sticky
+  stops and the white-bg team section appears naturally.
+*/
+
+.about-stage {
   position: relative;
-  overflow: hidden;
 }
 
-.page-hero__bg {
+.about-bg {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  margin-bottom: -100vh;  /* overlap: next content slides over the image */
+  overflow: hidden;
+  z-index: 0;
+}
+
+.about-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.about-bg-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 90% 70% at 50% -20%, rgba(82, 183, 136, 0.12) 0%, transparent 65%);
+  background: #000;
+  opacity: 0;               /* driven by JS scroll listener */
   pointer-events: none;
 }
 
-.page-hero__inner {
+/* ── Hero panel: first full screen, just the photo + hint ── */
+.about-hero-panel {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 52px 52px 0;
+}
+
+/* ── Scroll hint (bottom-right) ── */
+.about-scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.88);
+  user-select: none;
+}
+
+.about-scroll-hint span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Mouse outline */
+.mouse-icon {
+  width: 26px;
+  height: auto;
+}
+
+/* Animated scroll-wheel dot inside the mouse */
+.mouse-wheel {
+  animation: mouse-scroll 1.6s ease-in-out infinite;
+  transform-origin: center 10px;
+}
+
+@keyframes mouse-scroll {
+  0%   { transform: translateY(0);    opacity: 1; }
+  60%  { transform: translateY(10px); opacity: 0.2; }
+  61%  { transform: translateY(0);    opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── Content that scrolls over the sticky photo ── */
+.about-over-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 80px;
+  padding-bottom: 120px;
+}
+
+/* ── Mission section (on photo, white text) ── */
+.about-mission {
+  padding: 60px 0;
+}
+
+.about-mission__inner {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 640px;
+}
+
+.about-mission__text {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 720px;
 }
 
-.page-hero__inner h1 {
+.about-mission__text h2 {
   font-family: var(--font-sans);
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 800;
   line-height: 1.15;
-  letter-spacing: -0.03em;
-  color: var(--color-text);
+  letter-spacing: -0.025em;
+  color: #fff;
 }
 
-.page-hero__inner h1 em {
-  font-style: italic;
-  color: var(--color-primary);
-}
-
-.page-hero__inner p {
-  font-size: 1.1rem;
-  color: var(--color-text-secondary);
+.about-mission__text > p {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.75;
-  max-width: 600px;
 }
 
-/* ===== Mission ===== */
-.mission__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+/* Light tag variant for use on dark/photo backgrounds */
+.tag--light {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.mission__values {
-  margin-top: 36px;
+/* Values list */
+.about-values {
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 22px;
 }
 
-.mission__value {
+.about-value {
   display: flex;
-  gap: 18px;
+  gap: 16px;
   align-items: flex-start;
 }
 
-.mission__value-dot {
-  width: 10px;
-  height: 10px;
+.about-value__dot {
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--color-primary-light);
   margin-top: 6px;
   flex-shrink: 0;
 }
 
-.mission__value h4 {
+.about-value h4 {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.97rem;
   font-weight: 700;
-  color: var(--color-text);
-  margin-bottom: 4px;
+  color: #fff;
+  margin-bottom: 3px;
 }
 
-.mission__value p {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
+.about-value p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.65;
 }
 
-/* ===== Team ===== */
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+/* ── White cover: sits above sticky photo, fully opaque ── */
+/*
+  This div scrolls over the sticky background image,
+  completely hiding it with a solid white background.
+  The moment its top edge enters the viewport, the
+  photo effect is gone and normal page resumes.
+*/
+.about-white-cover {
+  position: relative;
+  z-index: 2;
+  background: var(--color-bg, #fff);
+  /* top padding so there's a small gap before the section heading */
+  padding-top: 8px;
 }
 
+/* ═══════════════════════════════════════════
+   NORMAL WHITE-BG SECTIONS (Team, Culture)
+═══════════════════════════════════════════ */
+
+/* ── Team tiers ── */
+.team-tier {
+  margin-top: 52px;
+}
+
+.team-tier__label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--color-border-light);
+  width: 100%;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.team-grid {
+  display: grid;
+  gap: 20px;
+}
+
+/* Co-founders: 2 equal centered cards */
+.team-grid--founders {
+  grid-template-columns: repeat(2, 440px);
+  gap: 28px;
+  justify-content: center;
+}
+
+/* VPs: 3 centered columns, larger */
+.team-grid--vps {
+  grid-template-columns: repeat(3, minmax(0, 320px));
+  justify-content: center;
+}
+
+/* Execs: 3 centered columns, medium */
+.team-grid--execs {
+  grid-template-columns: repeat(3, minmax(0, 260px));
+  justify-content: center;
+}
+
+/* Mentors: 5-column compact grid */
+.team-grid--mentors {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* ── Cards ── */
 .team-card {
   display: flex;
   flex-direction: column;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
+.team-card__img-wrap {
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.team-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-card__photo {
+  transform: scale(1.04);
+}
+
+/* Graduated / Alumni darkening overlay */
+.team-card--graduated .team-card__img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.40);
+  pointer-events: none;
+}
+
+.team-card--graduated .team-card__photo {
+  filter: grayscale(35%);
+}
+
+.team-card--graduated .team-card__name,
+.team-card--graduated .team-card__role,
+.team-card--graduated .team-card__bio {
+  opacity: 0.7;
+}
+
+.team-card__grad-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #e0e0e0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+/* Legacy img placeholder wrapper */
 .team-card__img {
   overflow: hidden;
 }
 
 .team-card__body {
-  padding: 24px;
+  padding: 18px 20px 22px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   flex: 1;
 }
 
 .team-card__name {
   font-family: var(--font-sans);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--color-text);
 }
 
 .team-card__role {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-primary);
   letter-spacing: 0.02em;
 }
 
 .team-card__bio {
-  margin-top: 8px;
-  font-size: 0.88rem;
+  margin-top: 6px;
+  font-size: 0.84rem;
   color: var(--color-text-secondary);
   line-height: 1.65;
 }
 
-/* ===== Culture ===== */
+/* Co-founder: green accent border + prominent text */
+.team-card--founder {
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary), var(--shadow-md);
+}
+
+.team-card--founder .team-card__name {
+  font-size: 1.2rem;
+}
+
+.team-card--founder .team-card__role {
+  color: var(--color-primary);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.team-card--founder .team-card__bio {
+  font-size: 0.88rem;
+}
+
+/* VPs: subtle accent */
+.team-card--vp .team-card__role {
+  color: var(--color-primary);
+}
+
+/* Execs: muted role */
+.team-card--exec .team-card__role {
+  color: var(--color-text-secondary);
+}
+
+/* Mentors: compact, lighter style */
+.team-card--mentor .team-card__body {
+  padding: 14px 16px 18px;
+}
+
+.team-card--mentor .team-card__name {
+  font-size: 0.9rem;
+}
+
+.team-card--mentor .team-card__role {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+.team-card--mentor .team-card__bio {
+  font-size: 0.8rem;
+}
+
+/* ── Culture ── */
 .culture {
   background: var(--color-bg-subtle);
 }
@@ -185,15 +434,41 @@
   flex-shrink: 0;
 }
 
-/* ===== Responsive ===== */
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
 @media (max-width: 1100px) {
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .team-grid--mentors {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 860px) {
-  .mission__inner,
+  .team-grid--founders {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid--vps,
+  .team-grid--execs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid--mentors {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .team-grid--founders {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .about-hero-panel {
+    padding: 0 28px 40px 0;
+  }
+
   .culture__inner {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -202,10 +477,18 @@
   .culture__img {
     order: -1;
   }
+
+  .about-mission__inner {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
   .team-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-scroll-hint {
+    display: none;
   }
 }

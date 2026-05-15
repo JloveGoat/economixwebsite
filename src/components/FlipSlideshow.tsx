@@ -48,7 +48,7 @@ const FlipSlideshow: React.FC = () => {
             src={images[current]}
             alt={`EcoNomix session ${current + 1}`}
             draggable={false}
-          />
+           loading="lazy" decoding="async" />
         </div>
 
         {/* Back — next image, pre-counter-rotated so it reads correctly */}
@@ -57,7 +57,7 @@ const FlipSlideshow: React.FC = () => {
             src={images[next]}
             alt={`EcoNomix session ${next + 1}`}
             draggable={false}
-          />
+           loading="lazy" decoding="async" />
         </div>
       </div>
 

@@ -46,7 +46,7 @@ const MarqueeRow: React.FC<MarqueeRowProps> = ({ delay }) => (
             src={imgUrl(`/images/school-pics/${s.file}`)}
             alt={s.name}
             draggable={false}
-          />
+           loading="lazy" decoding="async" />
         </div>
       ))}
     </div>

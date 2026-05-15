@@ -78,7 +78,7 @@ const Home: React.FC = () => {
           <div className="sponsors__tier sponsors__tier--primary">
             {primarySponsors.map(s => (
               <div className="sponsor-logo sponsor-logo--primary" key={s.file}>
-                <img src={imgUrl(`/images/sponsor-pics/${s.file}`)} alt={s.name} />
+                <img src={imgUrl(`/images/sponsor-pics/${s.file}`)} alt={s.name}  loading="lazy" decoding="async" />
               </div>
             ))}
           </div>
@@ -87,7 +87,7 @@ const Home: React.FC = () => {
           <div className="sponsors__tier sponsors__tier--secondary">
             {secondarySponsors.map(s => (
               <div className="sponsor-logo sponsor-logo--secondary" key={s.file}>
-                <img src={imgUrl(`/images/sponsor-pics/${s.file}`)} alt={s.name} />
+                <img src={imgUrl(`/images/sponsor-pics/${s.file}`)} alt={s.name}  loading="lazy" decoding="async" />
               </div>
             ))}
           </div>

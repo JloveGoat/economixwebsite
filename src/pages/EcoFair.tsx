@@ -25,7 +25,7 @@ const PodiumCard: React.FC<{
     <div className={`podium-card podium-card--${place}`}>
       <div className="podium-card__img-wrap">
         {imageSrc
-          ? <img src={imageSrc} alt={`${label} — ${startup}`} className="podium-card__photo" />
+          ? <img src={imageSrc} alt={`${label} — ${startup}`} className="podium-card__photo"  loading="lazy" decoding="async" />
           : <PlaceholderImg label="team-photo.jpg" />
         }
         <span className="podium-card__medal">{medal}</span>
@@ -63,7 +63,7 @@ const EcoFair: React.FC = () => {
           <img
             src={imgUrl('/images/session-pics/final-group-pic.JPG')}
             alt="EcoPreneurship Business Fair 2025 — group photo"
-          />
+            loading="eager" decoding="async" />
         </div>
 
         {/* ── Highlights ── */}
@@ -89,20 +89,20 @@ const EcoFair: React.FC = () => {
           <div className="podium-row">
             <PodiumCard
               place={2}
-              startup="[Startup Name]"
-              desc="[Brief description of this team's project and what made it stand out at the fair.]"
+              startup="ToyBrary"
+              desc="ToyBrary is an innovative solution that allows members to recycle their toys, one of the largest producers of waste in the world."
               imageSrc={imgUrl('/images/session-pics/second-place.JPG')}
             />
             <PodiumCard
               place={1}
-              startup="[Startup Name]"
-              desc="[Brief description of this team's project and what made it stand out at the fair.]"
+              startup="EverFresh"
+              desc="EverFresh is a sustainable storage solution for fruits and vegetables proven to reduce food waste by 50% during initial trials."
               imageSrc={imgUrl('/images/session-pics/first-place.JPG')}
             />
             <PodiumCard
               place={3}
-              startup="[Startup Name]"
-              desc="[Brief description of this team's project and what made it stand out at the fair.]"
+              startup="WrapUp"
+              desc="WrapUp is a one-of-a-kind wrapping paper that filters out microplastics from drinking water"
               imageSrc={imgUrl('/images/session-pics/third-place.JPG')}
             />
           </div>
@@ -117,7 +117,7 @@ const EcoFair: React.FC = () => {
                 <img
                   src={imgUrl(`/images/session-pics/pitchpic${n}.JPG`)}
                   alt={`Fair photo ${n}`}
-                />
+                 loading="lazy" decoding="async" />
               </div>
             ))}
           </div>

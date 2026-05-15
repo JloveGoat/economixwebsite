@@ -105,7 +105,7 @@
 
 /* Bottom bar */
 .footer__bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-primary-dark);
 }
 
 .footer__bottom-inner {

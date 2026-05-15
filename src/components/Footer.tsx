@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import './Footer.css'
+import imgUrl from '../imgUrl'
 
 const Footer: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ const Footer: React.FC = () => {
       <div className="container footer__inner">
         <div className="footer__brand">
           <Link to="/" className="footer__logo">
-            <img src="/images/economix-logo.png" alt="EcoNomix logo" className="footer__logo-img" />
+            <img src={imgUrl('/images/economix-logo.png')} alt="EcoNomix logo" className="footer__logo-img"  loading="lazy" decoding="async" />
           </Link>
           <p className="footer__tagline">
             Where Social Innovation Meets Environmental Sustainability.

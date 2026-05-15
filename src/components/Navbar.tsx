@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
       <div className="container navbar__inner">
         {/* Logo */}
         <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          <img src={imgUrl('/images/economix-logo.png')} alt="EcoNomix logo" className="navbar__logo-img" />
+          <img src={imgUrl('/images/economix-logo.png')} alt="EcoNomix logo" className="navbar__logo-img" loading="eager" decoding="async" />
           <span className="navbar__logo-text">Eco<strong>Nomix</strong></span>
         </Link>
 
@@ -43,9 +43,14 @@ const Navbar: React.FC = () => {
           </NavLink>
         </nav>
 
-        <Link to="/camps" className="btn btn-primary navbar__cta">
-          Apply Now
-        </Link>
+        <a
+          href="https://forms.gle/c5mvmxXKPTtQj3dCA"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary navbar__cta"
+        >
+          Sign up for Summer 2026
+        </a>
 
         {/* Mobile hamburger */}
         <button
@@ -64,7 +69,13 @@ const Navbar: React.FC = () => {
           <NavLink to="/about" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active' : ''}>About Us</NavLink>
           <NavLink to="/camps" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active' : ''}>Camps</NavLink>
           <NavLink to="/ecofair" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? 'active' : ''}>EcoPreneurship Fair</NavLink>
-          <Link to="/camps" className="btn btn-primary" onClick={() => setMenuOpen(false)}>Apply Now</Link>
+          <a
+            href="https://forms.gle/c5mvmxXKPTtQj3dCA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+            onClick={() => setMenuOpen(false)}
+          >Apply Now</a>
         </nav>
       </div>
     </header>

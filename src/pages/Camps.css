@@ -714,6 +714,89 @@
   line-height: 1.65;
 }
 
+/* ===== 2026 signup CTA ===== */
+.camp-year--signup {
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.signup-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  max-width: 560px;
+  padding: 64px 40px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.signup-box__heading {
+  font-family: var(--font-sans);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.signup-box__sub {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+}
+
+.signup-box__btn {
+  margin-top: 8px;
+  padding: 14px 36px;
+  font-size: 1rem;
+}
+
+/* ===== Scroll reveal fly-in ===== */
+[data-side="from-left"] {
+  opacity: 0;
+  transform: translateX(-56px);
+  transition: opacity 0.25s ease, transform 0.65s ease;
+}
+
+[data-side="from-right"] {
+  opacity: 0;
+  transform: translateX(56px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+/* Text gets a slight head-start; images follow 120ms later */
+.session-wrapper.is-visible .session-block__text {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0s;
+}
+
+.session-wrapper.is-visible .session-block__images {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.12s;
+}
+
+/* Pitch collage below the block fades up */
+.session-wrapper .pitch-collage {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+}
+
+.session-wrapper.is-visible .pitch-collage {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
   .highlights-grid {

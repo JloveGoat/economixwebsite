@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './Camps.css'
 import imgUrl from '../imgUrl'
 
 type Year = '2025' | '2026'
 
 const Camps: React.FC = () => {
-  const [activeYear, setActiveYear] = useState<Year>('2026')
+  const [activeYear, setActiveYear] = useState<Year>('2025')
 
   return (
     <div className="camps-page">
@@ -14,8 +14,6 @@ const Camps: React.FC = () => {
         <div className="container camps-header__inner">
           <span className="tag">Programs</span>
           <h1>Our Camps</h1>
-          <p>Explore highlights from each year of EcoNomix camps.</p>
-
           {/* Year toggle */}
           <div className="year-toggle">
             {(['2025', '2026'] as Year[]).map(y => (
@@ -136,17 +134,38 @@ const sessions2025: Session[] = [
   },
 ]
 
-const Camp2025: React.FC = () => (
-  <div className="camp-year">
-    {sessions2025.map((s, i) => {
-      const isReal = s.images[0].startsWith('/')
-      const count = s.images.length
+/* ── per-session component so we can use hooks ── */
+const SessionEntry: React.FC<{ s: Session; i: number }> = ({ s, i }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
 
-      return (
-        <div className="session-wrapper" key={s.number}>
-          <div className={`session-block${i % 2 === 1 ? ' session-block--flipped' : ''}${count === 7 ? ' session-block--top-align' : ''}`}>
+  useEffect(() => {
+    const el = wrapperRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
+      { threshold: 0.12 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const isReal = s.images[0].startsWith('/')
+  const count  = s.images.length
+  const flipped = i % 2 === 1
+
+  // text is on the left for normal, right for flipped — and vice-versa for images
+  const textSide  = flipped ? 'from-right' : 'from-left'
+  const imgSide   = flipped ? 'from-left'  : 'from-right'
+
+  return (
+    <div
+      ref={wrapperRef}
+      className={`session-wrapper${visible ? ' is-visible' : ''}`}
+    >
+          <div className={`session-block${flipped ? ' session-block--flipped' : ''}${count === 7 ? ' session-block--top-align' : ''}`}>
             {/* Text side */}
-            <div className="session-block__text">
+            <div className="session-block__text" data-side={textSide}>
               <div className="session-block__number">{s.number}</div>
               <h2 className="session-block__title">{s.title}</h2>
               <span className="session-block__date">{s.date}</span>
@@ -155,95 +174,95 @@ const Camp2025: React.FC = () => (
 
             {/* Images side */}
             {isReal && count === 7 ? (
-              <div className="session-block__images session-block__images--seven">
+              <div className="session-block__images session-block__images--seven" data-side={imgSide}>
                 {/* 6a — hero */}
                 <div className="session-img seven-hero">
-                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} loading="lazy" decoding="async" />
                 </div>
                 {/* 6b–6g — 3×2 collage */}
                 <div className="seven-collage">
                   {s.images.slice(1).map((src, idx) => (
                     <div key={idx} className="session-img seven-collage__cell">
-                      <img src={imgUrl(src)} alt={`${s.title} photo ${idx + 2}`} />
+                      <img src={imgUrl(src)} alt={`${s.title} photo ${idx + 2}`} loading="lazy" decoding="async" />
                     </div>
                   ))}
                 </div>
               </div>
             ) : isReal && count === 6 ? (
-              <div className="session-block__images session-block__images--six">
+              <div className="session-block__images session-block__images--six" data-side={imgSide}>
                 <div className="session-img six-a">
-                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`}  loading="lazy" decoding="async" />
                 </div>
                 <div className="session-img six-b">
-                  <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`} />
+                  <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`}  loading="lazy" decoding="async" />
                 </div>
                 <div className="session-img six-c">
-                  <img src={imgUrl(s.images[2])} alt={`${s.title} photo 3`} />
+                  <img src={imgUrl(s.images[2])} alt={`${s.title} photo 3`}  loading="lazy" decoding="async" />
                 </div>
                 <div className="session-img six-d">
-                  <img src={imgUrl(s.images[3])} alt={`${s.title} photo 4`} />
+                  <img src={imgUrl(s.images[3])} alt={`${s.title} photo 4`}  loading="lazy" decoding="async" />
                 </div>
                 <div className="session-img six-e">
-                  <img src={imgUrl(s.images[4])} alt={`${s.title} photo 5`} />
+                  <img src={imgUrl(s.images[4])} alt={`${s.title} photo 5`}  loading="lazy" decoding="async" />
                 </div>
                 <div className="session-img six-f">
-                  <img src={imgUrl(s.images[5])} alt={`${s.title} photo 6`} />
+                  <img src={imgUrl(s.images[5])} alt={`${s.title} photo 6`}  loading="lazy" decoding="async" />
                 </div>
               </div>
             ) : isReal && count === 4 ? (
-              <div className="session-block__images session-block__images--four">
+              <div className="session-block__images session-block__images--four" data-side={imgSide}>
                 {s.images.map((src, idx) => (
                   <div key={idx} className="session-img four-cell">
-                    <img src={imgUrl(src)} alt={`${s.title} photo ${idx + 1}`} />
+                    <img src={imgUrl(src)} alt={`${s.title} photo ${idx + 1}`}  loading="lazy" decoding="async" />
                   </div>
                 ))}
               </div>
             ) : isReal && count === 5 ? (
-              <div className="session-block__images session-block__images--five">
+              <div className="session-block__images session-block__images--five" data-side={imgSide}>
                 {/* Row 1: 3a + 3b */}
                 <div className="session-img five-r1a">
-                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`}  loading="lazy" decoding="async" />
                 </div>
                 <div className="session-img five-r1b">
-                  <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`} />
+                  <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`}  loading="lazy" decoding="async" />
                 </div>
                 {/* Row 2: 3c + 3d side by side (state reps) */}
                 <div className="session-img five-r2a">
-                  <img src={imgUrl(s.images[2])} alt={`${s.title} photo 3`} />
+                  <img src={imgUrl(s.images[2])} alt={`${s.title} photo 3`}  loading="lazy" decoding="async" />
                 </div>
                 <div className="session-img five-r2b">
-                  <img src={imgUrl(s.images[3])} alt={`${s.title} photo 4`} />
+                  <img src={imgUrl(s.images[3])} alt={`${s.title} photo 4`}  loading="lazy" decoding="async" />
                 </div>
                 {/* Row 3: 3e full width */}
                 <div className="session-img five-r3">
-                  <img src={imgUrl(s.images[4])} alt={`${s.title} photo 5`} />
+                  <img src={imgUrl(s.images[4])} alt={`${s.title} photo 5`}  loading="lazy" decoding="async" />
                 </div>
               </div>
             ) : isReal && count >= 3 ? (
-              <div className="session-block__images session-block__images--trio">
+              <div className="session-block__images session-block__images--trio" data-side={imgSide}>
                 <div className="session-img session-img--trio-main">
-                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`}  loading="lazy" decoding="async" />
                 </div>
                 <div className="session-img-row">
                   <div className="session-img session-img--trio-sub">
-                    <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`} />
+                    <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`}  loading="lazy" decoding="async" />
                   </div>
                   <div className="session-img session-img--trio-sub">
-                    <img src={imgUrl(s.images[2])} alt={`${s.title} photo 3`} />
+                    <img src={imgUrl(s.images[2])} alt={`${s.title} photo 3`}  loading="lazy" decoding="async" />
                   </div>
                 </div>
               </div>
             ) : isReal ? (
-              <div className="session-block__images session-block__images--pair">
+              <div className="session-block__images session-block__images--pair" data-side={imgSide}>
                 <div className="session-img session-img--pair-a">
-                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`} />
+                  <img src={imgUrl(s.images[0])} alt={`${s.title} photo 1`}  loading="lazy" decoding="async" />
                 </div>
                 <div className="session-img session-img--pair-b">
-                  <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`} />
+                  <img src={imgUrl(s.images[1])} alt={`${s.title} photo 2`}  loading="lazy" decoding="async" />
                 </div>
               </div>
             ) : (
-              <div className="session-block__images">
+              <div className="session-block__images" data-side={imgSide}>
                 <div className="session-img session-img--main img-placeholder">
                   <PlaceholderIcon />
                   <span>{s.images[0]}</span>
@@ -266,99 +285,47 @@ const Camp2025: React.FC = () => (
                     key={idx}
                     className={`pitch-collage__item pitch-collage__item--${idx}`}
                   >
-                    <img src={imgUrl(src)} alt={`Pitch photo ${idx + 1}`} />
+                    <img src={imgUrl(src)} alt={`Pitch photo ${idx + 1}`}  loading="lazy" decoding="async" />
                   </div>
                 ))}
               </div>
             </div>
           )}
         </div>
-      )
-    })}
+  )
+}
+
+const Camp2025: React.FC = () => (
+  <div className="camp-year">
+    {sessions2025.map((s, i) => (
+      <SessionEntry key={s.number} s={s} i={i} />
+    ))}
   </div>
 )
 
 /* ─────────────────────────────────────────
    2026 Content
 ───────────────────────────────────────── */
+/* TODO: replace this URL with the real Google Form interest link */
+const INTEREST_FORM_URL = 'https://forms.gle/c5mvmxXKPTtQj3dCA'
+
 const Camp2026: React.FC = () => (
-  <div className="camp-year">
-    {/* Hero highlight */}
-    <div className="camp-year__hero">
-      <div className="camp-year__hero-text">
-        <span className="tag">Summer 2026</span>
-        <h2>This Year's Cohort</h2>
-        <p>
-          EcoNomix 2026 is our most ambitious camp yet. With an expanded curriculum,
-          new mentor partnerships, and participants from [X] schools, this cohort is
-          tackling some of the most pressing environmental challenges in our communities.
-        </p>
-        <div className="camp-year__stats">
-          <div className="camp-stat">
-            <span className="camp-stat__value">[#]</span>
-            <span className="camp-stat__label">Students</span>
-          </div>
-          <div className="camp-stat">
-            <span className="camp-stat__value">[#]</span>
-            <span className="camp-stat__label">Schools</span>
-          </div>
-          <div className="camp-stat">
-            <span className="camp-stat__value">[#]</span>
-            <span className="camp-stat__label">Weeks</span>
-          </div>
-          <div className="camp-stat">
-            <span className="camp-stat__value">[$]</span>
-            <span className="camp-stat__label">In Prizes</span>
-          </div>
-        </div>
-      </div>
-      <div className="camp-year__hero-img img-placeholder">
-        <PlaceholderIcon />
-        <span>2026-camp-hero.jpg</span>
-        <em>Recommended: 800 × 500</em>
-      </div>
-    </div>
-
-    {/* Schedule */}
-    <div className="camp-year__section">
-      <h3 className="camp-year__section-title">Program Schedule</h3>
-      <div className="schedule-list">
-        {[
-          { week: 'Week 1–2',  title: 'Foundations',         desc: 'Design thinking, problem scoping, and team formation. Students identify the environmental challenge they will tackle.' },
-          { week: 'Week 3–4',  title: 'Research & Ideation', desc: 'Deep-dive research sessions, field interviews, and structured brainstorming to develop viable solution concepts.' },
-          { week: 'Week 5–6',  title: 'Build & Prototype',   desc: 'Hands-on prototyping with guidance from mentors. Teams iterate rapidly based on peer and mentor feedback.' },
-          { week: 'Week 7',    title: 'Pitch Prep',          desc: 'Storytelling workshops, pitch coaching, and mock presentations to sharpen messaging and delivery.' },
-          { week: 'Week 8',    title: 'Demo Day',            desc: 'Public showcase and pitch competition. Winners receive funding and resources to continue developing their project.' },
-        ].map(s => (
-          <div className="schedule-item" key={s.week}>
-            <div className="schedule-item__week">{s.week}</div>
-            <div className="schedule-item__content">
-              <h4>{s.title}</h4>
-              <p>{s.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    {/* Projects spotlight */}
-    <div className="camp-year__section">
-      <h3 className="camp-year__section-title">Projects in Progress</h3>
-      <div className="projects-grid">
-        {[
-          { title: '[Project Name]', team: '[Team / School]', desc: 'A brief description of the project idea, the environmental problem it addresses, and the approach the team is taking to solve it.' },
-          { title: '[Project Name]', team: '[Team / School]', desc: 'A brief description of the project idea, the environmental problem it addresses, and the approach the team is taking to solve it.' },
-          { title: '[Project Name]', team: '[Team / School]', desc: 'A brief description of the project idea, the environmental problem it addresses, and the approach the team is taking to solve it.' },
-        ].map((p, i) => (
-          <div className="project-card card" key={i}>
-            <div className="project-card__body">
-              <h4 className="project-card__title">{p.title}</h4>
-              <span className="project-card__team">{p.team}</span>
-              <p className="project-card__desc">{p.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+  <div className="camp-year camp-year--signup">
+    <div className="signup-box">
+      <span className="tag">Summer 2026</span>
+      <h2 className="signup-box__heading">Sign up for the 2026 EcoNomix Program</h2>
+      <p className="signup-box__sub">
+        Applications are now open. Fill out the interest form to reserve your spot in
+        the next cohort of EcoNomix's sustainability startup incubator.
+      </p>
+      <a
+        href={INTEREST_FORM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn btn-primary signup-box__btn"
+      >
+        Sign up Now →
+      </a>
     </div>
   </div>
 )
