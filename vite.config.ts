@@ -12,5 +12,5 @@ export default defineConfig({
       webp: { lossless: false, quality: 75 },
     }),
   ],
-  base: '/economixwebsite/',
+  base: '/',
 })
