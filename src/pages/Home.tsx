@@ -35,6 +35,7 @@ const Home: React.FC = () => {
               {[
                 { value: '24+', label: 'Startups Incubated' },
                 { value: '$5,000', label: 'Raised' },
+                { value: '450+', label: 'Students Impacted' },
                 { value: '$600+', label: 'cash funding given' },
                 { value: '15+', label: 'Expert Mentors' },
               ].map(s => (

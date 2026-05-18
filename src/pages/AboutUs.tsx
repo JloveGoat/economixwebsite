@@ -26,6 +26,7 @@ interface TeamMember {
   img: string
   graduated?: boolean
   imgPosition?: string
+  imgFit?: 'cover' | 'contain'
 }
 
 const cofounders: TeamMember[] = [
@@ -44,9 +45,9 @@ const cofounders: TeamMember[] = [
 ]
 
 const vps: TeamMember[] = [
-  { name: 'Nathan Ho', role: 'Vice President', bio: "Nathan is a junior at NNHS. He's passionate about working with kids and promoting the success of others, motivating him to work with EcoNomix. He's interested in going into a career of oncology where he can carry out his passion for community service in a professional setting.", img: '/images/headshot-pics/nathan.jpeg', imgPosition: 'center 85%' },
+  { name: 'Nathan Ho', role: 'Vice President', bio: "Nathan is a junior at NNHS. He's passionate about working with kids and promoting the success of others, motivating him to work with EcoNomix. He's interested in going into a career of oncology where he can carry out his passion for community service in a professional setting.", img: '/images/headshot-pics/nathan.jpeg', imgPosition: 'center bottom' },
   { name: 'Ronak Chugh', role: 'Vice President', bio: 'Ronak is a junior at NNHS and is passionate about business and economics. He is a competitor at DECA and a National Qualifier for BPA(Business Professionals of America).', img: '/images/headshot-pics/ronak.png' },
-  { name: 'Luke Domark', role: 'Vice President', bio: '[Brief bio — background and what they bring to EcoNomix.]', img: '/images/headshot-pics/luke.jpeg', imgPosition: 'center 15%' },
+  { name: 'Luke Domark', role: 'Vice President', bio: "Luke is a junior at NNHS and is an aspiring entrepreneur with interests in finance. He serves on the school's DECA board and has won at the state level and placed internationally. He's also a sales associate at Tennis Ballerz, and he looks forward to working with the next batch of young entrepreneurs this summer!", img: '/images/headshot-pics/luke.jpeg', imgFit: 'contain' },
 ]
 
 const executives: TeamMember[] = [
@@ -67,7 +68,7 @@ const TeamCard: React.FC<{ member: TeamMember; variant: 'founder' | 'vp' | 'exec
     <div className={`team-card card team-card--${variant}${member.graduated ? ' team-card--graduated' : ''}`}>
       <div className="team-card__img-wrap" style={{ height: imgHeight }}>
         {isRealImg
-          ? <img src={imgUrl(member.img)} alt={member.name} loading="lazy" decoding="async" className="team-card__photo" style={member.imgPosition ? { objectPosition: member.imgPosition } : undefined} />
+          ? <img src={imgUrl(member.img)} alt={member.name} loading="lazy" decoding="async" className="team-card__photo" style={{ ...(member.imgPosition ? { objectPosition: member.imgPosition } : {}), ...(member.imgFit ? { objectFit: member.imgFit } : {}) }} />
           : (
             <div className="img-placeholder" style={{ height: '100%', borderRadius: '0' }}>
               <ImageIcon />
@@ -139,6 +140,7 @@ const AboutUs: React.FC = () => {
                     { title: 'Mentor-Driven Initiative',        desc: 'With an incredibly talented team of mentors, we ensure that each startup team is given the mentorship they need to succeed.' },
                     { title: 'Growth within an Ecosystem', desc: "Our curriculum is designed to help teams learn from one another, ensuring that everyone grows as a whole despite competing against one another." },
                     { title: 'Access to the Best',   desc: 'We bring in some of the most succesful environmental and business leaders in the community, ensuring that each team has someone to look up to.' },
+                    { title: 'Community-Focused Impact', desc: "We've impacted over 450 students through the EcoPreneurship camps, EcoPreneurship Fairs, local elementary and middle school talks, and local teen center events." },
                   ].map(v => (
                     <div className="about-value" key={v.title}>
                       <div className="about-value__dot" />

@@ -82,7 +82,7 @@
 
 .hero__stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 0;
 }
 
@@ -206,12 +206,18 @@
     border-right: none;
   }
 
-  .hero__stat:nth-child(3) {
+  .hero__stat:nth-child(3),
+  .hero__stat:nth-child(4) {
     border-top: 1px solid var(--color-border-light);
   }
 
   .hero__stat:nth-child(4) {
+    border-right: none;
+  }
+
+  .hero__stat:nth-child(5) {
     border-top: 1px solid var(--color-border-light);
+    grid-column: 1 / -1;
     border-right: none;
   }
 
