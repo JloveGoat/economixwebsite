@@ -25,47 +25,38 @@ interface TeamMember {
   bio: string
   img: string
   graduated?: boolean
+  imgPosition?: string
 }
 
 const cofounders: TeamMember[] = [
   {
-    name: 'Parik',
+    name: 'Parik Puranam',
     role: 'Co-Founder, Co-President',
     bio: 'Parik is a junior at NNHS and lives and breathes entrepreneurship. As a finalist at the Blue Ocean Competition(largest entrepreneurship competition in the world), one of the Top 100 Emerging Innovators in the world named by the EIA, and an economics researcher at UNC Chapel Hill, he uses what he learns from his own experiences to mentor future entrepreneurs. By running EcoNomix, he hopes to give each young entrepreneur the opportunity they need to showcase their talent to the world.',
     img: '/images/headshot-pics/parik.jpeg',
   },
   {
-    name: '[Co-President Name]',
+    name: 'Kevin Chen',
     role: 'Co-President',
-    bio: '[Bio — background and what they bring to EcoNomix.]',
-    img: 'co-president.jpg',
+    bio: "Kevin is a junior at NNHS and is motivated to prepare today's youth for the future. He is the Co-Founder of Airobic Athletics, a startup that he runs, and is an international qualifier in DECA. He can't wait to work with this summer's batch of young eco-preneurs!" ,
+    img: '/images/headshot-pics/kevin.png',
   },
 ]
 
 const vps: TeamMember[] = [
-  { name: 'Abhi', role: 'Vice President', bio: '[Brief bio — background and what they bring to EcoNomix.]', img: 'vp-abhi.jpg' },
-  { name: 'Ronak', role: 'Vice President', bio: 'Ronak is a junior at NNHS and is passionate about business and economics. He is a competitor at DECA and a National Qualifier for BPA(Business Professionals of America).', img: '/images/headshot-pics/ronak.png' },
-  { name: '[VP Name]', role: 'Vice President', bio: '[Brief bio — background and what they bring to EcoNomix.]', img: 'vp-3.jpg' },
+  { name: 'Nathan Ho', role: 'Vice President', bio: "Nathan is a junior at NNHS. He's passionate about working with kids and promoting the success of others, motivating him to work with EcoNomix. He's interested in going into a career of oncology where he can carry out his passion for community service in a professional setting.", img: '/images/headshot-pics/nathan.jpeg', imgPosition: 'center 85%' },
+  { name: 'Ronak Chugh', role: 'Vice President', bio: 'Ronak is a junior at NNHS and is passionate about business and economics. He is a competitor at DECA and a National Qualifier for BPA(Business Professionals of America).', img: '/images/headshot-pics/ronak.png' },
+  { name: 'Luke Domark', role: 'Vice President', bio: '[Brief bio — background and what they bring to EcoNomix.]', img: '/images/headshot-pics/luke.jpeg', imgPosition: 'center 15%' },
 ]
 
 const executives: TeamMember[] = [
-  { name: 'Charlie', role: 'Executive Team Member', bio: 'Charlie is a junior at NNHS and is driven to serve his community. With his experience as a two-time HOSA State Qualifier and a prominent figure in his community, he is commited to growing the next generation of leaders.', img: '/images/headshot-pics/charlie.png' },
-  { name: '[Executive Name]', role: 'Executive Team Member', bio: '[Brief bio — background and what they bring to EcoNomix.]', img: 'exec-2.jpg' },
-  { name: '[Executive Name]', role: 'Executive Team Member', bio: '[Brief bio — background and what they bring to EcoNomix.]', img: 'exec-3.jpg' },
+  { name: 'Charlie Minott', role: 'Executive Team Member', bio: 'Charlie is a junior at NNHS and is driven to serve his community. With his experience as a two-time HOSA State Qualifier and a prominent figure in his community, he is commited to growing the next generation of leaders.', img: '/images/headshot-pics/charlie.png' },
+  { name: 'Bilal Hussain', role: 'Executive Team Member', bio: 'Bilai is a Junior at NNHS and is looking to enter the medical and business fields. He is a former wrestler and football player and is passionate about mentoring future entrepreneurs to success.', img: '/images/headshot-pics/bilal.png' },
+  { name: 'Musa Hussain', role: 'Executive Team Member', bio: 'Musa is a senior at Plainfield High School and looks forward to working with the next generation of entrepreneurs.', img: '/images/headshot-pics/musa.png' },
+  { name: 'Killian Tinglof', role: 'Executive Team Member', bio: "Killian is a junior at NNHS and is passionate about helping others. He's the founder of the Story Point volunteer committee, and he looks forward to mentoring the future generation of entrepreneurs this summer!", img: '/images/headshot-pics/killian.png' },
+  { name: 'Sravya Chevula', role: 'Executive Team Member', bio: 'Sravya is a sophmore at NNHS and looks forward to working with the next generation of entrepreneurs.', img: 'exec-3.jpg' }
 ]
 
-const mentors: TeamMember[] = [
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-1.jpg' },
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-2.jpg' },
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-3.jpg' },
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-4.jpg' },
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-5.jpg' },
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-6.jpg' },
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-7.jpg' },
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-8.jpg' },
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-9.jpg' },
-  { name: '[Mentor Name]', role: '[Title / Company]', bio: '[Brief bio — expertise and why they mentor at EcoNomix.]', img: 'mentor-10.jpg' },
-]
 
 /* ── Reusable team card ── */
 const TeamCard: React.FC<{ member: TeamMember; variant: 'founder' | 'vp' | 'exec' | 'mentor' }> = ({ member, variant }) => {
@@ -76,7 +67,7 @@ const TeamCard: React.FC<{ member: TeamMember; variant: 'founder' | 'vp' | 'exec
     <div className={`team-card card team-card--${variant}${member.graduated ? ' team-card--graduated' : ''}`}>
       <div className="team-card__img-wrap" style={{ height: imgHeight }}>
         {isRealImg
-          ? <img src={imgUrl(member.img)} alt={member.name} loading="lazy" decoding="async" className="team-card__photo" />
+          ? <img src={imgUrl(member.img)} alt={member.name} loading="lazy" decoding="async" className="team-card__photo" style={member.imgPosition ? { objectPosition: member.imgPosition } : undefined} />
           : (
             <div className="img-placeholder" style={{ height: '100%', borderRadius: '0' }}>
               <ImageIcon />
@@ -203,38 +194,9 @@ const AboutUs: React.FC = () => {
               {/* Mentors */}
               <div className="team-tier">
                 <span className="team-tier__label">Mentors</span>
-                <div className="team-grid team-grid--mentors">
-                  {mentors.map(m => <TeamCard key={m.img} member={m} variant="mentor" />)}
-                </div>
+                <p className="mentors-tba">Mentors to be announced!</p>
               </div>
 
-            </div>
-          </section>
-
-          {/* Culture */}
-          <section className="section-sm culture">
-            <div className="container culture__inner">
-              <div className="culture__img">
-                <div className="img-placeholder" style={{ height: '380px', borderRadius: 'var(--radius-xl)' }}>
-                  <ImageIcon />
-                  <span>office.jpg</span>
-                  <em>Recommended: 900 × 600</em>
-                </div>
-              </div>
-              <div className="culture__text">
-                <span className="tag">Culture</span>
-                <h2>A place where<br />ideas catch fire</h2>
-                <p>
-                  Our space in the heart of the city is designed to spark collisions between founders,
-                  mentors, and ideas. From open workspaces to curated dinner events, every touchpoint
-                  is an opportunity to grow.
-                </p>
-                <ul className="culture__list">
-                  {['Weekly founder dinners', 'Monthly investor showcases', 'Co-working space access', 'Digital community platform'].map(item => (
-                    <li key={item}><CheckIcon />{item}</li>
-                  ))}
-                </ul>
-              </div>
             </div>
           </section>
 
@@ -264,11 +226,5 @@ const ImageIcon: React.FC = () => (
   </svg>
 )
 
-const CheckIcon: React.FC = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10" />
-    <polyline points="9 12 11 14 15 10" />
-  </svg>
-)
 
 export default AboutUs
